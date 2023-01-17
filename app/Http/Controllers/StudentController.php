@@ -30,19 +30,22 @@ class StudentController extends Controller
     {
         //validate form
         $request->validate([
+            'number'        => 'required|min:5',
             'name'          => 'required|min:5',
-            'address'       => 'required|min:5',
-            'birth'         => 'required|min:5',
-            'motivation'    => 'required|min:6'
+            'email'         => 'required|min:5',
+            'phone'         => 'required|min:5',
+            'photo'         => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        $photo = $request->file('photo');
+        $photo->storeAs('public/students', $photo->hashName());
 
         //create student
         Student::create([
+            'number'         => $request->number,
             'name'           => $request->name,
-            'address'        => $request->address,
-            'birth'          => $request->birth,
-            'motivation'     => $request->motivation
+            'email'          => $request->email,
+            'phone'          => $request->phone,
+            'photo'          => $photo->hashName(),
         ]);
 
         //redirect to index
@@ -57,38 +60,41 @@ class StudentController extends Controller
     {
         //validate form
         $request->validate([
+            'number'        => 'required|min:5',
             'name'          => 'required|min:5',
-            'address'       => 'required|min:5',
-            'birth'         => 'required|min:5',
-            'motivation'    => 'required|min:6'
+            'email'         => 'required|min:5',
+            'phone'         => 'required|min:5',
+            'photo'         => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        //check if image is uploaded
-        if ($request->hasFile('image')) {
+        //check if photo is uploaded
+        if ($request->hasFile('photo')) {
 
-            //upload new image
-            $image = $request->file('image');
-            $image->storeAs('public/students', $image->hashName());
+            //upload new photo
+            $photo = $request->file('photo');
+            $photo->storeAs('public/students', $photo->hashName());
 
-            //delete old image
-            Storage::delete('public/students/'.$student->image);
+            //delete old photo
+            Storage::delete('public/students/'.$student->photo);
 
-            //update student with new image
+            //update student with new photo
             $student->update([
-                'name'     => $request->title,
-                'address'     => $request->title,
-                'birth'     => $request->title,
-                'motivation'   => $request->content
+             'number'         => $request->number,
+             'name'           => $request->name,
+             'email'          => $request->email,
+             'phone'          => $request->phone,
+             'photo'          => $photo->hashName(),
             ]);
 
         } else {
 
-            //update student without image
+            //update student without photo
             $student->update([
-                'name'     => $request->name,
-                'address'     => $request->address,
-                'birth'     => $request->birth,
-                'motivation'   => $request->motivation
+            'number'         => $request->number,
+            'name'           => $request->name,
+            'email'          => $request->email,
+            'phone'          => $request->phone,
+            'photo'          => $photo->hashName(),
             ]);
         }
 
@@ -97,10 +103,10 @@ class StudentController extends Controller
     }
     public function destroy(student $student)
     {
-        //delete image
-        // Storage::delete('public/students/'. $student->image);
+        // delete photo
+        Storage::delete('public/students/'. $student->photo);
 
-        //delete student
+        // delete student
         $student->delete();
 
         //redirect to index

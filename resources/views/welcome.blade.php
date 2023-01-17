@@ -305,7 +305,7 @@
                 <td>Nama depan</td>
                 <td>Nama belakang</td>
                 <td>Alamat</td>
-                <td>Nomor Handphone</td>
+                <td>NoHp</td>
                 <td>Tanggal Lahir</td>
                 <td>Motivasi</td>
         

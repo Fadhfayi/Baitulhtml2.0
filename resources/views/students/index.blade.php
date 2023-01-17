@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data students - SantriKoding.com</title>
+    <title>Data Posts - SantriKoding.com</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
@@ -15,26 +15,30 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('students.create') }}" class="btn btn-md btn-success mb-3">TAMBAH DATA</a>
+                        <a href="{{ route('students.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
+                                <th scope="col">Nomor Induk</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Alamat</th>
-                                <th scope="col">Tanggal Lahir</th>
-                                <th scope="col">Motivasi</th>
-                                <th scope="col">AKSI</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">NoHp</th>
+                                <th scope="col">Foto</th>
                               </tr>
                             </thead>
                             <tbody>
                               @forelse ($students as $student)
                                 <tr>
-                                    <td>{{ $student-> name }}</td>
-                                    <td>{{ $student-> address }}</td>
-                                    <td>{{ $student-> birth }}</td>
-                                    <td>{!! $student-> motivation !!}</td>
+                                    <td>{{ $student->number }}</td>
+                                    <td>{{ $student->name }}</td>
+                                    <td>{{ $student->email }}</td>
+                                    <td>{{ $student->phone}}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('yakinn nih ??');" action="{{ route('students.destroy', $student->id) }}" method="POST">
+                                        <img src="{{ Storage::url('public/students/').$student->photo }}" class="rounded" style="width: 150px">
+                                    </td>
+                     
+                                    <td class="text-center">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('students.destroy', $student->id) }}" method="POST">
                                             <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
@@ -44,7 +48,7 @@
                                 </tr>
                               @empty
                                   <div class="alert alert-danger">
-                                      Data student belum Tersedia.
+                                      Data Post belum Tersedia.
                                   </div>
                               @endforelse
                             </tbody>
