@@ -15,7 +15,14 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                </div>
+
+                    </div>
+            </div>
+        
+            <div class="col-md-12">
+                <div class="card text-center">
+                    <a class="btn btn-block btn-success" href="{{ route('students.index') }}">Dashboard Students</a>
+             
             </div>
         </div>
     </div>
