@@ -9,3 +9,6 @@ Route::get('/', function () {
 //route resource
 Route::resource('/students', \App\Http\Controllers\StudentController::class);
 Route::resource('/posts', \App\Http\Controllers\PostController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
