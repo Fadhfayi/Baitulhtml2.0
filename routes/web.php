@@ -9,6 +9,7 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'LoginController@login']);
 Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('students', App\Http\Controllers\StudentController::class);
     Route::resource('posts', App\Http\Controllers\PostController::class);
+    Route::resource('groups', App\Http\Controllers\GroupController::class);
 });
 Auth::routes();
 
