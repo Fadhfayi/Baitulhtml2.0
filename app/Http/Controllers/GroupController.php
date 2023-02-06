@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\group;
-use Illuminate\Support\Facades\DB;
+use App\Models\user;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 
 class GroupController extends Controller
 {
@@ -17,11 +19,16 @@ class GroupController extends Controller
     public function index()
     {
         //get groups
-        // $groups = group::latest()->paginate(5);
+
+        // $groups = Group::latest()->paginate(5);
+        // $groups = Group::with('users')->get();
+
+
         $groups = DB::table('groups')
-        ->join('users', 'users.id', '=', 'groups.user_id')
-        ->select('groups.*', 'users.name as user_name')
-        ->get();
+            ->join('users', 'users.id', '=', 'groups.user_id')
+            ->select('groups.*', 'users.name as user_name')
+            ->get();
+
         //render view with groups
         return view('groups.index', compact('groups'));
     }
@@ -34,7 +41,7 @@ class GroupController extends Controller
     public function create()
     {
         $group = User::all();
-        return view('groups.create');
+        return view('groups.create', compact('group'));
     }
 
     /**
@@ -74,7 +81,7 @@ class GroupController extends Controller
         // return view('groups.edit', ['group' => $group, 'selectedUserId' => $selectedUserId]);
         // return view('groups.edit', compact('group'));
 
-        $group = User::all();
+        // $group = User::all();
         return view('groups.edit', compact('group'));
     }
 
@@ -88,14 +95,13 @@ class GroupController extends Controller
     public function update(Request $request, Group $group)
     {
         //validate form
-        $request->validate([
-            'user_id'     => 'required',
+        $request->validate([  
             'name'     => 'required',
         ]);
 
         //update group
         $group->update([
-            'user_id'   => $request->user_id,
+
             'name'      => $request->name
         ]);
 
@@ -103,7 +109,7 @@ class GroupController extends Controller
         return redirect()->route('groups.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
-    public function delete(Group $group)
+    public function destroy(group $group)
     {
         // Delete Data
         $group->delete();
