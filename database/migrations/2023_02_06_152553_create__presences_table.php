@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSchedulesTable extends Migration
+class CreatePresencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreateSchedulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('presences', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->bigInteger('group_id')->unsigned();
+            $table->bigInteger('schedule_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
             $table->string('note')->nullable();
-            $table->timestamp('time_start_at')->nullable();
-            $table->timestamp('time_end_at')->nullable();
+            $table->dateTime('start_at')->nullable();
+            $table->dateTime('end_at')->nullable();
             });
     }
 
@@ -30,6 +30,6 @@ class CreateSchedulesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('schedules');
+        Schema::drop('presences');
     }
 }

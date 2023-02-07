@@ -2,120 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
+     * index
+     * 
+     * @return void
      */
-    public function index(Request $request)
-    {
-        $keyword = $request->get('search');
-        $perPage = 25;
+    // public function index(Request $request)
+    // {
+    //     $group_id = $request->query('group_id');
+    //     $members = DB::table('members')->where('group_id', $group_id)->get();
 
-        if (!empty($keyword)) {
-            $members = Member::where('group_id', 'LIKE', "%$keyword%")
-                ->orWhere('student_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $members = Member::latest()->paginate($perPage);
-        }
 
-        return view('members.index', compact('members'));
-    }
+    //     // Render View with member
+    //     return view('members.index', compact('members'));
+
+    // }
 
     /**
-     * Show the form for creating a new resource.
+     * create
      *
-     * @return \Illuminate\View\View
+     * @return void
      */
     public function create()
     {
+        $groups = DB::table('members')
+            ->join('', 'groups.id', '=', 'members.groups_id')
+            ->select('members.*', 'groups.name as group_name')
+            ->get();
         return view('members.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return void
      */
     public function store(Request $request)
     {
-        
-        $requestData = $request->all();
-        
-        Member::create($requestData);
+        //validate form
+        $request->validate([
+            'group_id'     => 'required',
+            'student_id'     => 'required',
+        ]);
 
-        return redirect('members')->with('flash_message', 'Member added!');
-    }
+        //create post
+        Member::create([
+            'group_id'   => $request->group_id,
+            'student_id'      => $request->student_id
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        $member = Member::findOrFail($id);
-
-        return view('members.show', compact('member'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $member = Member::findOrFail($id);
-
-        return view('members.edit', compact('member'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request, $id)
-    {
-        
-        $requestData = $request->all();
-        
-        $member = Member::findOrFail($id);
-        $member->update($requestData);
-
-        return redirect('members')->with('flash_message', 'Member updated!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy($id)
-    {
-        Member::destroy($id);
-
-        return redirect('members')->with('flash_message', 'Member deleted!');
+        //redirect to index
+        return redirect()->route('groups.show')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

@@ -3,11 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
-             <div class="col-md-12">
-                
-                    <div class="card-header">Edit schedule #{{ $schedule->id }}</div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">Edit Schedule #{{ $schedule->id }}</div>
                     <div class="card-body">
                         <a href="{{ url('/schedules') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
