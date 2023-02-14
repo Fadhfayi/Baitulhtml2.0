@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Presence;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class PresencesController extends Controller
@@ -41,7 +42,9 @@ class PresencesController extends Controller
      */
     public function create()
     {
-        return view('presences.create');
+        return view('presences.create',[
+            'students'=>Student::all()
+        ]);
     }
 
     /**

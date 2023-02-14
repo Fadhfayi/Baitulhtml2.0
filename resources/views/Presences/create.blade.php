@@ -1,34 +1,49 @@
 @extends('layout.admin')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Create New Presence</div>
-                    <div class="card-body">
-                        <a href="{{ url('/presences') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+<div class="container text-center">
+    <div class="row">
+        <table class="table table-strip">
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-                        <form method="POST" action="{{ url('/presences') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-
-                            @include ('presences.form', ['formMode' => 'create'])
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+            <thead>
+                <th>NO</th>
+                <th>Nama</th>
+                <th>Absensi</th>
+                <th>Keterangan</th>
+            </thead>
+            <tbody>
+            @foreach ($students as $student)
+                <th>{{ $loop->iteration }}</th>
+                <th>{{ $student->name }}</th>
+         
+                <th>
+                    <form>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">Hadir</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">Izin/Sakit</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                            <label class="form-check-label" for="inlineCheckbox3">Alfa</label>
+                        </div>
+                    </form>
+                </th>
+                <th>
+                    <form>
+                        <div class="form-floating">
+                            <label for="exampleFormControlTextarea1" ></label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                            </div>
+                    </form>
+                </th>
+            </tbody>
+            @endforeach
+        </table>
+        
     </div>
+</div>
 @endsection

@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-9">
-                <div class="card">
+            <div class="col-md-12">
+                
                     <div class="card-header">Schedule {{ $schedule->id }}</div>
                     <div class="card-body">
 

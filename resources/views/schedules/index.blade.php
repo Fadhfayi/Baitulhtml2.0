@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-9">
-                <div class="card">
+            <div class="col-md-12">
+                
                     <div class="card-header">Schedules</div>
                     <div class="card-body">
                         <a href="{{ url('/schedules/create') }}" class="btn btn-success btn-sm" title="Add New Schedule">
@@ -40,6 +40,8 @@
                                         <td>
                                             <a href="{{ url('/schedules/' . $item->id) }}" title="View Schedule"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/schedules/' . $item->id . '/edit') }}" title="Edit Schedule"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/schedules/' . $item->id . '/edit') }}" title="Edit Schedule"><button class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Absen</button></a>
+
 
                                             <form method="POST" action="{{ url('/schedules' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}

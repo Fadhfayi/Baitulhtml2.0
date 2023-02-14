@@ -21,6 +21,7 @@ class StudentController extends Controller
 
         //render view with students
         return view('students.index', compact('students'));
+        return view('presences.index', compact('students'));
     }
     public function create()
     {
