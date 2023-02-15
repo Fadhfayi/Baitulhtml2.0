@@ -23,10 +23,10 @@
             <center>ACTIVE CLASS DATA
         </h1>
 
-        <table class="table table-striped-columns">
+        <table class="table table-strip">
             <a href="{{ route('presences.create') }}" class="btn btn-md btn-success mb-3"><i class="fa fa-plus-circle"></i> ADD NEW ({{ Auth::user()->name }})</a>
             <thead>
-                <tr class="table-success">
+                <tr class="table">
                     <th scope="col">
                         <center>ID
                     </th>
@@ -50,7 +50,7 @@
 
             <tbody>
                 @forelse($presences as $item)
-                <tr>
+                <tr class="text-center">
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->schedule_id }}</td>
                     <td>{{ $item->student_id }}</td>
@@ -79,9 +79,5 @@
 
         </div>
     </div>
-    <?php include('style/script.php'); ?>
-</body>
-
-
-</html>
+    
 @stop

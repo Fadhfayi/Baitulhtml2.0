@@ -1,34 +1,55 @@
-@extends('layout.admin')
-
+@extends('layouts.admin')
 @section('content')
 
-
-             <div class="col-md-12">
-                
-                    <div class="card-header">Create New Member</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ url('/members') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+                        <form action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+                            @csrf
+                            <div class="form-group">
+                                <label class="font-weight-bold">ID Kelas</label>
+                                <select type="number" class="form-control @error('group_id') is-invalid @enderror" name="group_id" id="group_id">
+                                    <option>Pilih Kelas</option>
+                                    @foreach($members as $data)
+                                        <option value="{{ $data->id }}">{{ $data->id }}. {{ $data->name }}</option>
+                                    @endforeach
+                                </select>
 
-                        <form method="POST" action="{{ url('/members') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                                <!-- error message untuk group_id -->
+                                @error('group_id')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
 
-                            @include ('members.form', ['formMode' => 'create'])
+                            <div class="form-group">
+                                <label class="font-weight-bold">Nama Kelas</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Kelas Programmer">
+
+                                <!-- error message untuk name -->
+                                @error('name')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-md btn-primary">SUMBIT</button>
+                            <button type="reset" class="btn btn-md btn-warning">RESET</button>
 
                         </form>
-
                     </div>
                 </div>
             </div>
+            <div class="col-lg-1"></div>
         </div>
     </div>
-@endsection
+
+
+
+@stop

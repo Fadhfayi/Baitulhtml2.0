@@ -21,7 +21,7 @@
             <center>ACTIVE CLASS DATA
         </h1>
 
-        <table class="table table-stripped">
+        <table class="table table-strip">
             <a href="{{ route('schedules.create') }}" class="btn btn-md btn-success mb-3"><i class="fa fa-plus-circle
 "></i> ADD NEW ({{ Auth::user()->name }})</a>
             <thead>
@@ -30,7 +30,7 @@
                         <center>ID
                     </th>
                     <th scope="col">
-                        <center>Group Id
+                        <center>Group 
                     </th>
                     <th scope="col">
                         <center>User Id
@@ -52,7 +52,7 @@
 
             <tbody>
                 @forelse($schedules as $item)
-                <tr>
+                <tr class="text-center">
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->group_id }}</td>
                     <td>{{ $item->user_id }}</td>
