@@ -1,48 +1,87 @@
 @extends('layout.admin')
-
 @section('content')
-<div class="container text-center">
-    <div class="row">
-        <table class="table table-strip">
 
-            <thead>
-                <th>Nama</th>
-                <th>Absensi</th>
-                <th>Keterangan</th>
-            </thead>
-            <tbody>
-            @foreach ($students as $student)
-                <th>{{ $student->name }}</th>
-         
-                <th>
-                    <form>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">Hadir</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2">Izin/Sakit</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">Alfa</label>
-                        </div>
-                    </form>
-                </th>
-                <th>
-                    <form>
-                        <div class="mb-9">
-                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </form>
-                </th>
-            </tbody>
+
+    <!-- Awal Data Table -->
+    <div id="table" class="container">
+        @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+        @endif
+
+        @if(count($errors))
+        <div class="alert alert-danger">
+            @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
             @endforeach
+        </div>
+        @endif
+
+
+        <h1>
+            <center>ACTIVE CLASS DATA
+        </h1>
+
+        <table class="table table-striped-columns">
+            <a href="{{ route('presences.create') }}" class="btn btn-md btn-success mb-3"><i class="fa fa-plus-circle"></i> ADD NEW ({{ Auth::user()->name }})</a>
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">
+                        <center>ID
+                    </th>
+                    <th scope="col">
+                        <center>Schedule Id
+                    </th>
+                    <th scope="col">
+                        <center>Student Id
+                    </th>
+                    <th scope="col">
+                        <center>Presence
+                    </th>
+                    <th scope="col">
+                        <center>Note
+                    </th>
+                    <th scope="col" colspan="2">
+                        <center>Action
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @forelse($presences as $item)
+                <tr>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->schedule_id }}</td>
+                    <td>{{ $item->student_id }}</td>
+                    <td>{{ $item->presence }}</td>
+                    <td>{{ $item->note }}</td>
+                    <td class="text-center">
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('presences.destroy', $item->id) }}" method="POST">
+                            <a href="{{ route('presences.edit', $item->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> EDIT</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> DELETE</button>
+                        </form>
+                    </td>
+                </tr>
+
+                @empty
+                <div class="alert alert-danger">
+                    <center>DATA NOT FOUND</center>
+                </div>
+
+                @endforelse
+            </tbody>
+            <!-- Akhir Data Table -->
         </table>
-        
+        <div>
+
+        </div>
     </div>
-</div>
+    <?php include('style/script.php'); ?>
+</body>
+
+
+</html>
 @stop
-@endsection

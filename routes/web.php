@@ -12,7 +12,7 @@ Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('groups', App\Http\Controllers\GroupController::class);
     Route::resource('members', App\Http\Controllers\MemberController::class);
     Route::resource('schedules', App\Http\Controllers\scheduleController::class);
-    Route::resource('presences', App\Http\Controllers\PresencesController::class);
+    Route::resource('presences', App\Http\Controllers\PresenceController::class);
 });
 Auth::routes();
 
