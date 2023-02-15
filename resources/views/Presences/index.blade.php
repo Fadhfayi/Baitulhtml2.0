@@ -25,7 +25,7 @@
 
         <table class="table table-strip">
             <a href="{{ route('presences.create') }}" class="btn btn-md btn-success mb-3"><i class="fa fa-plus-circle"></i> ADD NEW ({{ Auth::user()->name }})</a>
-            <thead>
+             <thead class="thead table-dark">
                 <tr class="table">
                     <th scope="col">
                         <center>ID

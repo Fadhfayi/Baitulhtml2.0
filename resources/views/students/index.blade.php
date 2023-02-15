@@ -7,19 +7,20 @@
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <a href="{{ route('students.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
-                        <table class="table table-bordered">
-                            <thead>
-                              <tr>
+                        <table class="table ">
+                             <thead class="thead table-dark">
+                               <tr>
                                 <th scope="col">Nomor Induk</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">NoHp</th>
                                 <th scope="col">Foto</th>
+                                <th scope="col" class="text-center">ACTION</th>
                               </tr>
                             </thead>
                             <tbody>
                               @forelse ($students as $student)
-                                <tr>
+                                 <tr class="table table-strip">
                                     <td>{{ $student->number }}</td>
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->email }}</td>
@@ -28,7 +29,7 @@
                                         <img src="{{ Storage::url('public/students/').$student->photo }}" class="rounded" style="width: 150px">
                                     </td>
                      
-                                    <td class="text-center">
+                                    <td class="table-dark text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('students.destroy', $student->id) }}" method="POST">
                                             <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf

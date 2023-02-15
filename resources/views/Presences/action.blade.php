@@ -5,29 +5,29 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <table class="table table-striped">
+                <table class="table table-strip">
                     <tbody>
-                        <tr>
+                         <tr class="table table-dark">
                             <th>Id Schedule</th>
                             <td>{{ $schedule->id }}</td>
                         </tr>
-                        <tr>
+                         <tr class="table table-dark">
                             <th>Id - Name Group</th>
                             <td>{{ $schedule->group_id }} - {{ $result->group_name }}</td>
                         </tr>
-                        <tr>
+                         <tr class="table table-dark">
                             <th>Id - Name User</th>
                             <td>{{ $schedule->user_id }} - {{ $result->user_name }}</td>
                         </tr>
-                        <tr>
+                         <tr class="table table-dark">
                             <th>Jumlah Siswa</th>
                             <td>{{ $count }} Siswa</td>
                         </tr>
-                        <tr>
+                         <tr class="table table-dark">
                             <th>Note</th>
                             <td>{{ $schedule->note }}</td>
                         </tr>
-                        <tr>
+                         <tr class="table table-dark">
                             <th>Waktu Pembelajaran</th>
                             <td>{{ $schedule->time_start_at.' WIB - '.$schedule->time_end_at. ' WIB' }}</td>
                         </tr>
@@ -38,21 +38,21 @@
 
         <div class="row">
 
-            <div class="col-lg-10">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
+            <div class="col-lg-12">
+                <table class="table table-strip">
+                     <thead class="thead table-dark" class="thead table-dark">
+                         <tr  class="text-center">
                             <th>No</th>
-                            <th>Name</th>
+                            <th>Id Students</th>
                             <th>Presence</th>
                             <th>Note</th>
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody  class="text-center">
 
-                        @foreach ($presence as $item)
-                        <tr>
+                        @foreach ($presence as $item) 
+                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->student_id }}</td>
                             <td>

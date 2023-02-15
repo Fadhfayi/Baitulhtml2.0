@@ -9,8 +9,8 @@
                     <div class="card-body">
                         <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                         <table class="table table-bordered">
-                            <thead>
-                              <tr>
+                             <thead class="thead table-dark">
+                               <tr class="table table-dark">
                                 <th scope="col">GAMBAR</th>
                                 <th scope="col">JUDUL</th>
                                 <th scope="col">CONTENT</th>
@@ -19,7 +19,7 @@
                             </thead>
                             <tbody>
                               @forelse ($posts as $post)
-                                <tr>
+                                 <tr class="table table-dark">
                                     <td class="text-center">
                                         <img src="{{ Storage::url('public/posts/').$post->image }}" class="rounded" style="width: 150px">
                                     </td>

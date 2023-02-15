@@ -1,10 +1,10 @@
 @extends('layout.admin')
 @section('content')
 
-<table class="table table-striped table-bordered table-primary">
+<table class="table table-strip">
             <a href="{{ route('groups.create') }}" class="btn btn-md btn-success mb-3">ADD NEW</a>
-            <thead>
-                <tr class="table table-primary">
+             <thead class="thead table-dark">
+                <tr class="table table-dark">
                 <th scope="col">
                       <center>Lihat Siswa</center>  
                     </th>
@@ -28,7 +28,7 @@
 
             <tbody>
                 @forelse($groups as $group)
-                <tr>
+                 <tr>
                 <td><center><a href="{{ url('members') }}?group_id={{ $group->id }}" class="btn btn-sm btn-success">LIST</a></td>
                     <td class="text-center">{{ $group->id }}</td>
                     <td class="text-center">{{ $group->user_id }}</td>

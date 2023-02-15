@@ -299,7 +299,7 @@
     <!-- Blog End -->
     <table class="table">
         <thead>
-            <tr>
+             <tr class="table table-dark">
                 <td></td>
                 <td>id</td>
                 <td>Nama depan</td>
@@ -311,7 +311,7 @@
         
     @foreach($pendaftaran as $p)
       
-            <tr>
+             <tr class="table table-dark">
               <td>
                 <a href="http://localhost/idbc/insert.php?id={{ $p->id }}">
                   Edit
