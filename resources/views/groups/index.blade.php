@@ -29,7 +29,7 @@
             <tbody>
                 @forelse($groups as $group)
                  <tr>
-                <td><center><a href="{{ url('members') }}?group_id={{ $group->id }}" class="btn btn-sm btn-success">LIST</a></td>
+                <td><center><a href="{{ url('members') }}/{{ $group->member->id }}" class="btn btn-sm btn-success">LIST</a></td>
                     <td class="text-center">{{ $group->id }}</td>
                     <td class="text-center">{{ $group->user_id }}</td>
                     <td class="text-center">{{ $group->user_name }}</td>
