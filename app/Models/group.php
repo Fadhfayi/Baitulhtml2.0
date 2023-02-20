@@ -16,6 +16,13 @@ class group extends Model
     protected $fillable = [
         'user_id',
         'name',
-   
     ];
+    public function member()
+    {
+        return $this->hasMany(Member::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

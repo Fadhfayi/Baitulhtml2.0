@@ -57,19 +57,19 @@
                             <td>{{ $item->student_id }}</td>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="presence" id="presence1" value="Hadir">
+                                    <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="status[{{$item->id }}]" id="presence1" value="Hadir">
                                     <label class="form-check-label" for="presence1">Hadir</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="presence" id="presence2" value="Sakit">
+                                    <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="status[{{$item->id }}]" id="presence2" value="Sakit">
                                     <label class="form-check-label" for="presence2">Sakit</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="presence" id="presence3" value="Izin">
+                                    <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="status[{{$item->id }}]" id="presence3" value="Izin">
                                     <label class="form-check-label" for="presence3">Izin</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="presence" id="presence3" value="Alfa">
+                                    <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="status[{{$item->id }}]" id="presence3" value="Alfa">
                                     <label class="form-check-label" for="presence3">Alfa</label>
                                 </div>
                             </td>

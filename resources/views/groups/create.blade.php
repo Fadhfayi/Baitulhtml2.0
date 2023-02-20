@@ -1,5 +1,5 @@
-c
-
+@extends('layout.admin')
+@section('content')
 <div class="container">
         <div class="row">
             <div class="col-lg-1"></div>

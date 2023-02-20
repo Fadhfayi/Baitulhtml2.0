@@ -152,12 +152,12 @@
                                 Schedules
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('presences.index') }}">
                                 <i class="fa-solid fa-user"></i>
                                 Presences
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
 
                     <h6
