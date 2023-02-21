@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\group;
+use App\Models\Member;
 use App\Models\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,15 +25,13 @@ class GroupController extends Controller
         // $groups = Group::with('users')->get();
 
 
-        $groups = DB::table('groups')
-            ->join('users', 'users.id', '=', 'groups.user_id')
-            ->select('groups.*', 'users.name as user_name')
-            ->get();
-
+        $groups = group::all();
+      
         //render view with groups
         return view('groups.index', compact('groups'));
     }
 
+    
     /**
      * create
      *

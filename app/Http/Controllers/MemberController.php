@@ -68,9 +68,10 @@ class MemberController extends Controller
         return redirect()->route('groups.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function show($id)
+    public function show( $id)
     {
-        $group = Member::all();
+        $group = group::where('id',$id)->get();
+        // dd($group);
         // $groups = DB::table('members')
         //     ->select('members.*','groups.name as group_name','students.name')
         //     ->join('groups', 'groups.id', '=', 'members.group_id')

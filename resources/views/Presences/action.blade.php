@@ -50,11 +50,13 @@
                     </thead>
 
                     <tbody  class="text-center">
-
+                        <form action="{{ route ('presences.store') }}" method="POST" >
+                            @csrf
                         @foreach ($presence as $item) 
                          <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->student_id }}</td>
+                            <input type="hidden" value="{{ $schedule->id }}" name="schedule">
                             <td>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input @error('presence') is-invalid @enderror" type="radio" name="status[{{$item->id }}]" id="presence1" value="Hadir">
@@ -75,7 +77,7 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" class="form-control @error('note') is-invalid @enderror" name="note" value="{{ old('note') }}">
+                                    <input type="text" class="form-control @error('note') is-invalid @enderror" name="note[{{$item->id }}]" value="{{ old('note') }}">
 
                                     <!-- error message untuk note -->
                                     @error('note')
@@ -87,8 +89,12 @@
                             </td>
                         </tr>
                         @endforeach
+                        <button type="submit" class="btn btn-md btn-success">SIMPAN</button>
+                        </form>
                     </tbody>
+                   
                 </table>
+              
             </div>
 
         </div>
