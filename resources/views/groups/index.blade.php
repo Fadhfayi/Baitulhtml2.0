@@ -14,9 +14,9 @@
                     <th scope="col">
                     <center>ID Pengajar</center>  
                     </th>
-                    <th scope="col">
+                    <!-- <th scope="col">
                     <center>Nama Pengajar</center>  
-                    </th>
+                    </th> -->
                     <th scope="col">
                     <center>Nama Kelas</center> 
                     </th>
@@ -32,7 +32,7 @@
                 <td><center><a href="{{ url('members') }}/{{ $group->id }}" class="btn btn-sm btn-success">LIST</a></td>
                     <td class="text-center">{{ $group->id }}</td>
                     <td class="text-center">{{ $group->user_id }}</td>
-                    <td class="text-center">{{ $group->user_name }}</td>
+                    <!-- <td class="text-center">{{ $group->user_name }}</td> -->
                     <td class="text-center">{{ $group->name }}</td>
                     <td class="text-center"> 
                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('groups.destroy', $group->id) }}" method="POST">

@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('students.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
+                        <a href="{{ route('students.create') }}" class="btn btn-md btn-success mb-3">ADD STUDENT</a>
                         <table class="table ">
                              <thead class="thead table-dark">
                                <tr>
