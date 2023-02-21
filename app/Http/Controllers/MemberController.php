@@ -70,7 +70,7 @@ class MemberController extends Controller
 
     public function show( $id)
     {
-        $group = group::where('id',$id)->get();
+        $group = member::where('group_id',$id)->get();
         // dd($group);
         // $groups = DB::table('members')
         //     ->select('members.*','groups.name as group_name','students.name')
@@ -78,7 +78,10 @@ class MemberController extends Controller
         //     ->join('members.student_id','=','students.id')
         //     ->where('groups.id','=',$id)
         //     ->get();
-        // dd($group);
+        // foreach ($group as $key => $value) {
+        //     dd($value->student->name);
+        // }
+        
         return view('members.index', compact('group'));
     }
 }

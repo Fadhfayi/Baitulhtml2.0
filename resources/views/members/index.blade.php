@@ -18,20 +18,18 @@
                             </thead>
                             <tbody>
                               @forelse ($group as $member)
-                              @foreach ($member as $mem)
                                 <tr>
-                                    <td>{{ $mem->student->id }}</td>
-                                    <td>{{ $mem->student->name }}</td>
+                                    <td>{{ $member->student->id }}</td>
+                                    <td>{{ $member->student->name }}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('members.destroy', $mem->id) }}" method="POST">
-                                            <a href="{{ route('members.edit', $mem->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('members.destroy', $member->id) }}" method="POST">
+                                            <a href="{{ route('members.edit', $member->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
                                     </td>
                                 </tr>
-                                @endforeach
                               @empty
                                   <div class="alert alert-danger">
                                       Data Post belum Tersedia.
@@ -46,6 +44,7 @@
             </div>
         </div>
     </div>
+    @stop
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
