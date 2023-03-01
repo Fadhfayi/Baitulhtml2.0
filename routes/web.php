@@ -13,7 +13,11 @@ Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('members', App\Http\Controllers\MemberController::class);
     Route::resource('schedules', App\Http\Controllers\scheduleController::class);
     Route::resource('presences', App\Http\Controllers\PresenceController::class);
+    Route::resource('quizes', App\Http\Controllers\quizesController::class);
+    
 });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('quiz/quizes', 'App\Http\Controllers\quizesController');
