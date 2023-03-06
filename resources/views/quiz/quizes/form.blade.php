@@ -1,13 +1,19 @@
-<div class="form-group {{ $errors->has('group_id') ? 'has-error' : ''}}">
-    <label for="group_id" class="control-label">{{ 'Group Id' }}</label>
-    <input class="form-control" name="group_id" type="number" id="group_id" value="{{ isset($quize->group_id) ? $quize->group_id : ''}}" >
-    {!! $errors->first('group_id', '<p class="help-block">:message</p>') !!}
-</div>
+@csrf
+                            <div class="form-group">
+                                <label class="font-weight-bold">Pilih Kelas</label>
+                                <select type="number" class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
+                                    @foreach($group as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <br>
 <div class="form-group {{ $errors->has('quiz') ? 'has-error' : ''}}">
     <label for="quiz" class="control-label">{{ 'Quiz' }}</label>
     <textarea class="form-control" rows="5" name="quiz" type="textarea" id="quiz" >{{ isset($quize->quiz) ? $quize->quiz : ''}}</textarea>
     {!! $errors->first('quiz', '<p class="help-block">:message</p>') !!}
 </div>
+<br>
 <div class="form-group {{ $errors->has('opsi1') ? 'has-error' : ''}}">
     <label for="opsi1" class="control-label">{{ 'Opsi1' }}</label>
     <input type="radio" name="answer" value="1">

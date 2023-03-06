@@ -25,7 +25,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $quize->id }}</td>
                                     </tr>
-                                    <tr><th> Group Id </th><td> {{ $quize->group_id }} </td></tr><tr><th> Quiz </th><td> {{ $quize->quiz }} </td></tr><tr><th> Opsi1 </th><td> {{ $quize->opsi1 }} </td></tr>
+                                    <tr><th> Group Id </th><td> {{ $quize->group->name }} </td></tr><tr><th> Quiz </th><td> {{ $quize->quiz }} </td></tr><tr><th> Opsi1 </th><td> {{ $quize->opsi1 }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -35,9 +35,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="card">
-                <div class="card-header">quize {{ $quize->quiz }}</div>
+                <div class="card-header">{{ $quize->quiz }}</div>
                     <div class="card-body">
                         <input type="radio" value="1" {{ $quize->answer=='1' ? 'checked':''}}  id="opsi1" name="opsi1"> 
                         <label>{{ $quize->opsi1 }}</label>

@@ -26,6 +26,11 @@ class quize extends Model
      * @var array
      */
     protected $fillable = ['group_id', 'quiz', 'opsi1', 'opsi2', 'opsi3', 'opsi4', 'answer'];
+    public function group ()
+        {
+             return $this->belongsTo(Group::class);
+        }
+    
 
     
 }

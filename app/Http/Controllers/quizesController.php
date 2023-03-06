@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Models\group;
 use App\Models\quize;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,8 @@ class quizesController extends Controller
      */
     public function create()
     {
-        return view('quiz.quizes.create');
+        $group = group::all();
+        return view('quiz.quizes.create',compact('group'));
     }
 
     /**
