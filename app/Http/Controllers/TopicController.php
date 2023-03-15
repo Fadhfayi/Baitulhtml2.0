@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\group;
-use App\Models\Member;
-use App\Models\quize;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
-class quizesController extends Controller
+class TopicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,19 +21,13 @@ class quizesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $quizes = quize::where('group_id', 'LIKE', "%$keyword%")
-                ->orWhere('quiz', 'LIKE', "%$keyword%")
-                ->orWhere('opsi1', 'LIKE', "%$keyword%")
-                ->orWhere('opsi2', 'LIKE', "%$keyword%")
-                ->orWhere('opsi3', 'LIKE', "%$keyword%")
-                ->orWhere('opsi4', 'LIKE', "%$keyword%")
-                ->orWhere('answer', 'LIKE', "%$keyword%")
+            $topic = Topic::where('topic', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $quizes = quize::latest()->paginate($perPage);
+            $topic = Topic::latest()->paginate($perPage);
         }
 
-        return view('quiz.quizes.index', compact('quizes'));
+        return view('topic.topic.index', compact('topic'));
     }
 
     /**
@@ -45,8 +37,7 @@ class quizesController extends Controller
      */
     public function create()
     {
-        $group = group::all();
-        return view('quiz.quizes.create',compact('group'));
+        return view('topic.topic.create');
     }
 
     /**
@@ -61,9 +52,9 @@ class quizesController extends Controller
         
         $requestData = $request->all();
         
-        quize::create($requestData);
+        Topic::create($requestData);
 
-        return redirect('quiz/quizes')->with('flash_message', 'quize added!');
+        return redirect('topic')->with('flash_message', 'Topic added!');
     }
 
     /**
@@ -75,9 +66,9 @@ class quizesController extends Controller
      */
     public function show($id)
     {
-        $quize = quize::findOrFail($id);
+        $topic = Topic::findOrFail($id);
 
-        return view('quiz.quizes.show', compact('quize'));
+        return view('topic.topic.show', compact('topic'));
     }
 
     /**
@@ -89,9 +80,9 @@ class quizesController extends Controller
      */
     public function edit($id)
     {
-        $quize = quize::findOrFail($id);
+        $topic = Topic::findOrFail($id);
 
-        return view('quiz.quizes.edit', compact('quize'));
+        return view('topic.topic.edit', compact('topic'));
     }
 
     /**
@@ -107,10 +98,10 @@ class quizesController extends Controller
         
         $requestData = $request->all();
         
-        $quize = quize::findOrFail($id);
-        $quize->update($requestData);
+        $topic = Topic::findOrFail($id);
+        $topic->update($requestData);
 
-        return redirect('quiz/quizes')->with('flash_message', 'quize updated!');
+        return redirect('topic')->with('flash_message', 'Topic updated!');
     }
 
     /**
@@ -122,15 +113,8 @@ class quizesController extends Controller
      */
     public function destroy($id)
     {
-        quize::destroy($id);
+        Topic::destroy($id);
 
-        return redirect('quiz/quizes')->with('flash_message', 'quize deleted!');
+        return redirect('topic')->with('flash_message', 'Topic deleted!');
     }
-    public function bankSoal()
-    {
-        $group=group::where('user_id', auth()->user()->id)->first()->id;
-        $quiz=quize::where ('group_id', $group)->get();
-        return view();
-    }
-    
 }

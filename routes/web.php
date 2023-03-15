@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 //route resource
 Route::post('login', [ 'as' => 'login', 'uses' => 'LoginController@login']);
@@ -14,6 +13,10 @@ Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('schedules', App\Http\Controllers\scheduleController::class);
     Route::resource('presences', App\Http\Controllers\PresenceController::class);
     Route::resource('quizes', App\Http\Controllers\quizesController::class);
+    Route::get('/bankSoal',[App\Http\Controllers\quizesController::class,'bankSoal']);
+    Route::resource('topic', 'App\Http\Controllers\TopicController');
+    Route::get('/surveys', [App\Http\Controllers\SurveysController::class, 'index']);
+    Route::post('/surveys', [App\Http\Controllers\SurveysController::class, 'store']);   
     
 });
 Auth::routes();

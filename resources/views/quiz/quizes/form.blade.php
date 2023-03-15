@@ -3,7 +3,7 @@
                                 <label class="font-weight-bold">Pilih Kelas</label>
                                 <select type="number" class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
                                     @foreach($group as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        <option value="{{ $user->id }}">{{ $user->id}}. {{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
