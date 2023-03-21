@@ -33,6 +33,7 @@
 
 <script>
     import axios from 'axios';
+import { shallowReadonly } from 'vue';
     
     export default {
                 
@@ -54,7 +55,28 @@
                 })
                 .then(function (response) {
                     console.log(response);
-                    alert('Survey Berhasil Dicatat, Terima Kasih banyak')
+                    let timerInterval
+Swal.fire({
+  title: 'Terima Kasih sudah mengisi ',
+  html: 'kembali ke laman survey dalam <b></b> milliseconds.',
+  timer: 6000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('ditutup timer')
+  }
+});
                 })
                 .catch(function (error) {
                     console.log(error);
